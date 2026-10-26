@@ -1,9 +1,13 @@
-# { "Depends": "py-genlayer:test" }
+# v0.3.0
+# { "Depends": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng" }
 
-from genlayer import *
+import genlayer as gl
+from genlayer.types import *
+
+import json
 
 
-class DeliveryEscrow(gl.Contract):
+class DeliveryEscrow(gl.contract.Contract):
     client: Address
     freelancer: Address
     amount: u256
@@ -96,15 +100,15 @@ Reply with exactly one word: YES or NO."""
         self.client_balance = self.amount
 
     @gl.public.view
-    def get_status(self) -> dict:
-        return {
+    def get_status(self) -> str:
+        return json.dumps({
             "client": self.client.as_hex,
             "freelancer": self.freelancer.as_hex,
-            "amount": self.amount,
+            "amount": int(self.amount),
             "requirements": self.requirements,
             "delivery_url": self.delivery_url,
             "status": self.status,
-            "attempts": self.attempts,
-            "freelancer_balance": self.freelancer_balance,
-            "client_balance": self.client_balance,
-        }
+            "attempts": int(self.attempts),
+            "freelancer_balance": int(self.freelancer_balance),
+            "client_balance": int(self.client_balance),
+        })

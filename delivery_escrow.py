@@ -1,13 +1,12 @@
-# v0.3.0
-# { "Depends": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng" }
+# v0.2.16
+# { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 
-import genlayer as gl
-from genlayer.types import *
+from genlayer import *
 
 import json
 
 
-class DeliveryEscrow(gl.contract.Contract):
+class DeliveryEscrow(gl.Contract):
     client: Address
     freelancer: Address
     amount: u256
